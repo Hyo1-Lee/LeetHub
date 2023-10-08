@@ -4,21 +4,11 @@ public:
         if (x < 0 or (x % 10 == 0 and x !=0)){
             return false;
         }
-        vector<int> v;
-        int i=1000000000;
-        while (i > 0 && x / i == 0){
-            i = i / 10;
+        int sum=0;
+        while(x>sum){
+            sum = sum*10+x%10;
+            x = x/10;
         }
-        while (i > 0){
-            v.push_back(x / i);
-            x = x % i;
-            i = i / 10;
-        }
-        for(int i=0;i<v.size()/2;i++){
-            if(v[i] != v[v.size()-i-1]){
-                return false;
-            }
-        }
-        return true;
+        return (x==sum)||(x==sum/10);
     }
 };
